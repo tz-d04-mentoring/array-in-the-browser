@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrays in Browser</title>
+</head>
+
+<body>
+
+  <h1>Zeig mir Array oder geh weg</h1>
+
+  <!-- LI Elements sind für JavaScript ein ARRAY von Objects -->
+  <ul>
+    <li>mango</li>
+    <li>banane</li>
+    <li>mango</li>
+    <li>erdbeere</li>
+  </ul>
+
+  <input type="text" placeholder="Name von Item..." />
+  <button class="btn">Ersetze durch Kiwi</button>
+
+  <script>
+
+    // JSDoc => damit können wir sagen, was für ein Typ eine Variable sein soll, z.B. die Properties für das Object
+    // => damit bekommen wir Autocompletion
+    /** @type { { name: string, age: number } }  */
+    let person
+
+    // Mini Algorithm: Suchen und etwas ersetzen / updaten
+    // Step 1) Loope über Array
+    // Step 2) IF / ELSE CHECK
+    // Step 3) Mache ein Update mit gesuchtem Item
+
+    // JSDOC => VsCode sagen, was in der Variable drin ist
+    /** @type {HTMLButtonElement} */
+    const button = document.querySelector(".btn")
+
+    // button clickbar machen => indem wir onclick property eine Function zuweisen
+    button.onclick = () => {
+      const lis = document.querySelectorAll("li")
+
+      // hole text aus INPUT element
+      // user kann bestimmen, wonach gesucht wird
+      // der text des input felds, den der user eingetippt hat, ist im speziellen property "value" des input objects
+      const search = document.querySelector("input").value
+
+      // SPREAD Operator ... 
+      // wandel NodeList "array" (Array von HTML Elements) in normalen Array um
+      // Vorteil: Wir bekommen alle Array Methods, die wir kennen, wie slice, splice, etc
+      const arrLis = [...lis]
+      // console.log( "Ist das Array: ", Array.isArray(arrLis) )
+      // console.log( arrLis.slice(-1) ) // hole mir letztes Item aus Array 
+
+      // Step 1 => Loope über Array
+      lis.forEach((li) => {
+
+        // Step 2 => mache check bei jedem item 
+        if (li.innerText.includes(search)) {
+          li.innerText = "kiwi"
+        }
+      })
+
+
+    }
+
+
+  </script>
+
+</body>
+
+</html>
